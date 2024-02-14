@@ -4,7 +4,7 @@ import { getProveedor,
         postProveedor, 
         putProveedor, 
         deleteProveedor
-    } from "../controllers/ProveedoresController.js";
+    } from "../controllers/proveedoresController.js";
 
 Proveedor.get('', getProveedor );
 

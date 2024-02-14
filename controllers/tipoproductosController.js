@@ -33,7 +33,7 @@ const putTipoProducto = async (req, res)=>{
 
     const sql = `update TBLTipoProducto
     set nombre_Tipo = $1   
-    where id = $1
+    where id = $2
     returning *`;
 
     const result = await db.query(sql, params);

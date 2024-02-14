@@ -1,38 +1,94 @@
--- Active: 1698945600332@@127.0.0.1@5432@api_zoologico@public
+-- Active: 1706315115732@@127.0.0.1@5432@tiendaenlinea@public
+-- Active: 1706315115732@@127.0.0.1@5432@postgres@public
 
---drop table tbl_animal
+CREATE DATABASE TiendaEnLinea
 
-
-create table tbl_zona_zoologico
+create table TBLProveedores
 (
     id serial primary key, 
-    nombre varchar(200),
-    creado TIMESTAMP DEFAULT current_timestamp 
+    nombre_proveedor varchar(200),
+    direccion varchar(200),
+    contacto varchar(200),
+    fposteo TIMESTAMP DEFAULT current_timestamp 
 )
 
-create table tbl_animal
-(
-    id serial primary key ,
-    nombre varchar(500), 
-    sonido varchar(10),
-    id_zona int REFERENCES tbl_zona_zoologico(id),
-    creado TIMESTAMP DEFAULT current_timestamp
-);
-
-create table tbl_compra_tickets
+create table TBLTipoProducto
 (
     id serial PRIMARY key,
-    nombre_comprador varchar(200),
-    precio numeric,
-    fecha_compra TIMESTAMP DEFAULT current_timestamp 
+    nombre_Tipo varchar(200),
+    fposteo TIMESTAMP DEFAULT current_timestamp 
+);
+
+create table TBLCategoriaProducto
+(
+    id serial PRIMARY key,
+    nombre_categoria varchar(200),
+    fposteo TIMESTAMP DEFAULT current_timestamp 
+);
+
+create table TBLProducto
+(
+    id serial primary key ,
+    nombre_producto varchar(500), 
+    Precio numeric(12,2),
+    id_tipo int REFERENCES TBLTipoProducto(id),
+    id_proveedor int REFERENCES TBLProveedores(id),
+    id_categoria int REFERENCES TBLCategoriaProducto(id),
+    fposteo TIMESTAMP DEFAULT current_timestamp
+);
+
+create table TBLPuntoVenta
+(
+    id serial PRIMARY key,
+    nombre_PuntoVenta varchar(200),
+    direccion varchar(200),
+    contacto varchar(200),
+    fposteo TIMESTAMP DEFAULT current_timestamp 
+);
+
+create table TBLInventario
+(
+    idProducto int REFERENCES TBLProducto(id),
+    idPuntoVenta int REFERENCES TBLPuntoVenta(id),
+    existencia INTEGER,
+    fposteo TIMESTAMP DEFAULT current_timestamp 
+);
+
+create table TBLEncabezadoCompra
+(
+    documento varchar(50) PRIMARY key,
+    idProveedor int REFERENCES TBLProveedores(id),
+    observacion varchar(200),
+    fposteo TIMESTAMP DEFAULT current_timestamp 
+);
+
+create table TBLDetalleCompra
+(   
+    documento varchar(50) REFERENCES TBLEncabezadoCompra(documento),
+    idProducto int  REFERENCES TBLProducto(id),   
+    cantidad INTEGER,
+    costo numeric(12,2)    
+);
+
+
+create table TBLEncabezadoVenta
+(
+    documento varchar(50) PRIMARY key,
+    idSucursal int REFERENCES TBLPuntoVenta(id),
+    cliente varchar(200),
+    cajero varchar(200),
+    vendedor varchar(200),
+    fecha TIMESTAMP DEFAULT current_timestamp 
+);
+
+create table TBLDetalleVenta
+(
+    documento varchar(50) REFERENCES TBLEncabezadoVenta(documento),
+    idProducto int REFERENCES TBLProducto(id),
+    cantidad INTEGER,
+    precio numeric(12,2),
+    descuento numeric(12,2) 
 );
 
 
 
-select  a.id, 
-        a.nombre as nombre_animal, 
-        a.sonido, 
-        b.nombre as nombre_zona 
-from tbl_animal a
-inner join tbl_zona_zoologico b 
-on a.id_zona = b.id

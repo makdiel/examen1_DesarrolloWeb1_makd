@@ -29,11 +29,11 @@ const putCategoriaProducto = async (req, res)=>{
     const { nombre_categoria  } = req.body;
     const {id} = req.params;
     
-    const params =  [nombre_Tipo, id];
+    const params =  [nombre_categoria, id];
 
     const sql = `update TBLCategoriaProducto
     set nombre_categoria = $1   
-    where id = $1
+    where id = $2
     returning *`;
 
     const result = await db.query(sql, params);
@@ -48,7 +48,7 @@ const deleteCategoriaProducto = async (req, res)=>{
     const params = [ id];
 
     const sql = `delete from TBLCategoriaProducto
-    where id = $1
+    where id = $2
     returning *`;
 
     const result = await db.query(sql, params);

@@ -8,12 +8,12 @@ const pass = process.env.PASS;
 const dataBase = process.env.DB;
 const host = process.env.HOST;
 const portDb = process.env.PORT_DB;
-const portDb2 = process.env.PORT_DB;
+
 
 
 //const cnstr = `postgresql://${user}:${pass}@${host}:${portDb}/${dataBase}`; 
-const cnstr = `postgresql://postgres:ServerAcceso.1@localhost:${portDb}/api_zoologico`; 
-//const cnstr = `postgresql://postgres:ServerAcceso.1@localhost:5432/api_zoologico`; 
+//const cnstr = `postgresql://postgres:ServerAcceso.1@localhost:${portDb}/TiendaEnLinea`; 
+const cnstr = `postgresql://postgres:ServerAcceso.1@localhost:5432/tiendaenlinea`; 
 
 const db = pgp(cnstr);
 
