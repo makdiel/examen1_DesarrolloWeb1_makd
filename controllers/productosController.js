@@ -2,7 +2,10 @@ import {db} from '../db/conn.js';
 
 const getProducto = async(req, res)=>{
 
-    const sql = `select * from TBLProducto`;
+    const sql = `select a.id , a.nombre_producto,a.precio,b.nombre_proveedor,c.nombre_Tipo ,d.nombre_categoria  from TBLProducto a
+                 inner join TBLProveedores b on b.id = a.id_proveedor
+                 inner join TBLTipoProducto c on c.id = a.id_tipo
+                 inner join TBLCategoriaProducto d on d.id =a.id_categoria `;
 
     const result = await db.query(sql);
    
@@ -12,7 +15,7 @@ const getProducto = async(req, res)=>{
 
 const postProducto = async (req, res)=>{
     const { nombre_producto , Precio, id_tipo,id_proveedor,id_categoria} = req.body;
-    const params =  [nombre_proveedor, direccion, id_tipo,id_proveedor,id_categoria];
+    const params =  [nombre_producto, Precio, id_tipo,id_proveedor,id_categoria];
 
     const sql = `insert into TBLProducto 
     (nombre_producto,Precio,id_tipo,id_proveedor,id_categoria)
@@ -33,10 +36,10 @@ const putProducto = async (req, res)=>{
 
     const sql = `update TBLProducto
     set nombre_producto = $1, 
-    set Precio = $2,
-    set id_tipo = $3, 
-    set id_proveedor = $4, 
-    set id_categoria = $5, 
+    Precio = $2,
+    id_tipo = $3, 
+    id_proveedor = $4, 
+    id_categoria = $5 
     where id = $6
     returning *`;
 

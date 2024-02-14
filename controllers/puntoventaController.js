@@ -33,8 +33,8 @@ const putPuntoVenta = async (req, res)=>{
 
     const sql = `update TBLPuntoVenta
     set nombre_PuntoVenta = $1, 
-    set direccion = $2,
-    set contacto = $3, 
+    direccion = $2,
+    contacto = $3 
     where id = $4
     returning *`;
 

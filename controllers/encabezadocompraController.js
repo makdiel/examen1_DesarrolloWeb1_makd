@@ -2,7 +2,8 @@ import {db} from '../db/conn.js';
 
 const getEncabezadoCompra = async(req, res)=>{
 
-    const sql = `select * from TBLEncabezadoCompra`;
+    const sql = `select a.documento,b.nombre_proveedor,a.observacion from TBLEncabezadoCompra a 
+                 inner join TBLProveedores b on b.id = a.idProveedor`;
 
     const result = await db.query(sql);
    
@@ -33,7 +34,7 @@ const putEncabezadoCompra = async (req, res)=>{
 
     const sql = `update TBLEncabezadoCompra
     set idProveedor = $1,
-    set observacion = $2, 
+    observacion = $2 
     where documento = $3
     returning *`;
 
@@ -49,7 +50,7 @@ const deleteEncabezadoCompra = async (req, res)=>{
     const params = [ documento];
 
     const sql = `delete from TBLEncabezadoCompra
-    where id = $3
+    where documento = $3
     returning *`;
 
     const result = await db.query(sql, params);

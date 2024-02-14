@@ -33,9 +33,9 @@ const putProveedor = async (req, res)=>{
 
     const sql = `update TBLProveedores
     set nombre_proveedor = $1, 
-    set direccion = $2, 
-    set contacto = $3, 
-    where id = $4
+    direccion = $2, 
+    contacto = $3  
+    where id = $4 
     returning *`;
 
     const result = await db.query(sql, params);

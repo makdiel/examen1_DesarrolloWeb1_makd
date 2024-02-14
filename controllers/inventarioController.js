@@ -2,7 +2,11 @@ import {db} from '../db/conn.js';
 
 const getInventario = async(req, res)=>{
 
-    const sql = `select * from TBLInventario`;
+    const sql = `select c.nombre_PuntoVenta , a.idProducto , b.nombre_producto , d.nombre_Tipo , b.precio , a.existencia 
+                 from TBLInventario a 
+                 inner join TBLProducto b on b.id = a.idProducto
+                 inner join TBLPuntoVenta c on c.id = a.idPuntoVenta 
+                 inner join TBLTipoProducto d on d.id = b.id_tipo`;
 
     const result = await db.query(sql);
    
