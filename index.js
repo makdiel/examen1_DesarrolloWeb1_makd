@@ -1,7 +1,16 @@
 //const express = require('express');
 import express from 'express';
-import { animal } from './routes/apiAnimal.js';
-import { zona } from './routes/apiZona.js';
+
+import { CategoriaProducto } from './routes/apiCategoriaProductos.js';
+import { Proveedor } from './routes/apiProveedor.js';
+import { TipoProducto } from './routes/apiTipoProducto.js';
+import { Producto } from './routes/apiProducto.js';
+import { Inventario } from './routes/apiInventario.js';
+import { PuntoVenta } from './routes/apiPuntoVenta.js';
+import { EncabezadoCompra } from './routes/apiEncabezadoCompra.js';
+import { DetalleCompra } from './routes/apiDetalleCompra.js';
+import { EncabezadoVenta } from './routes/apiEncabezadoVenta.js';
+import { DetalleVenta } from './routes/apiDetalleVenta.js';
 
 const app = express();
 
@@ -11,8 +20,17 @@ app.use(express.json());
 
 const port = 4000;
 
-app.use('/api/animal', animal);
-app.use('/api/zona', zona);
+
+app.use('/api/CategoriaProducto', CategoriaProducto);
+app.use('/api/Proveedor', Proveedor);
+app.use('/api/TipoProducto', TipoProducto);
+app.use('/api/Producto', Producto);
+app.use('/api/Inventario', Inventario);
+app.use('/api/PuntoVenta', PuntoVenta);
+app.use('/api/EncabezadoCompra', EncabezadoCompra);
+app.use('/api/DetalleCompra', DetalleCompra);
+app.use('/api/EncabezadoVenta', EncabezadoVenta);
+app.use('/api/DetalleVenta', DetalleVenta);
 
 app.listen(port, ()=>{
 
