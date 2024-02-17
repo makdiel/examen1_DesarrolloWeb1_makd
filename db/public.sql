@@ -46,12 +46,17 @@ create table TBLPuntoVenta
     fposteo TIMESTAMP DEFAULT current_timestamp 
 );
 
+--DROP TABLE TBLInventario
+
 create table TBLInventario
-(
-    idProducto int REFERENCES TBLProducto(id),
-    idPuntoVenta int REFERENCES TBLPuntoVenta(id),
+(   
+   
+    idProducto int  PRIMARY key REFERENCES TBLProducto(id) ,
+    idPuntoVenta int  REFERENCES TBLPuntoVenta (id) ,
     existencia INTEGER,
-    fposteo TIMESTAMP DEFAULT current_timestamp 
+    fposteo TIMESTAMP DEFAULT current_timestamp  
+    --PRIMARY key (idProducto) REFERENCES TBLProducto(id),
+   -- CONSTRAINT fk_Puntoventa FOREIGN KEY (idPuntoVenta)  REFERENCES TBLPuntoVenta(id)
 );
 
 create table TBLEncabezadoCompra
@@ -62,14 +67,16 @@ create table TBLEncabezadoCompra
     fposteo TIMESTAMP DEFAULT current_timestamp 
 );
 
+-- drop table TBLDetalleCompra
+
 create table TBLDetalleCompra
 (   
-    documento varchar(50) REFERENCES TBLEncabezadoCompra(documento),
-    idProducto int  REFERENCES TBLProducto(id),   
+    id SERIAL PRIMARY key,
+    documento varchar(50)  REFERENCES TBLEncabezadoCompra(documento),
+    idProducto int   REFERENCES TBLProducto(id),   
     cantidad INTEGER,
     costo numeric(12,2)    
 );
-
 
 create table TBLEncabezadoVenta
 (
@@ -81,9 +88,12 @@ create table TBLEncabezadoVenta
     fecha TIMESTAMP DEFAULT current_timestamp 
 );
 
+--DROP TABLE  TBLDetalleVenta
+
 create table TBLDetalleVenta
 (
-    documento varchar(50) REFERENCES TBLEncabezadoVenta(documento),
+    id SERIAL PRIMARY key,
+    documento varchar(50)  REFERENCES TBLEncabezadoVenta(documento),
     idProducto int REFERENCES TBLProducto(id),
     cantidad INTEGER,
     precio numeric(12,2),

@@ -10,8 +10,8 @@ EncabezadoCompra.get('', getEncabezadoCompra );
 
 EncabezadoCompra.post('', postEncabezadoCompra)
 
-EncabezadoCompra.put( '/:id', putEncabezadoCompra )
+EncabezadoCompra.put( '/:documento', putEncabezadoCompra )
 
-EncabezadoCompra.delete('/:id', deleteEncabezadoCompra)
+EncabezadoCompra.delete('/:documento', deleteEncabezadoCompra)
 
 export { EncabezadoCompra }

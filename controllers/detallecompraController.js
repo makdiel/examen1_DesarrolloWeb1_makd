@@ -33,7 +33,7 @@ const putDetalleCompra = async (req, res)=>{
 
     const sql = `update TBLDetalleCompra
     set cantidad = $3, 
-    set costo = $4, 
+     costo = $4, 
     where documento = $1 and idProducto = $2 
     returning *`;
 

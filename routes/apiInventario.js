@@ -10,8 +10,8 @@ Inventario.get('', getInventario );
 
 Inventario.post('', postInventario)
 
-Inventario.put( '/:id', putInventario )
+Inventario.put( '/:idProducto', putInventario )
 
-Inventario.delete('/:id', deleteInventario)
+Inventario.delete('/:idProducto', deleteInventario)
 
 export { Inventario }
