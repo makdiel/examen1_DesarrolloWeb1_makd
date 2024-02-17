@@ -3,6 +3,8 @@
 
 CREATE DATABASE TiendaEnLinea
 
+SELECT * FROM TBLProveedores
+
 create table TBLProveedores
 (
     id serial primary key, 
@@ -11,6 +13,8 @@ create table TBLProveedores
     contacto varchar(200),
     fposteo TIMESTAMP DEFAULT current_timestamp 
 )
+
+select * from TBLTipoProducto
 
 create table TBLTipoProducto
 (
@@ -26,6 +30,9 @@ create table TBLCategoriaProducto
     fposteo TIMESTAMP DEFAULT current_timestamp 
 );
 
+select * from TBLCategoriaProducto
+
+
 create table TBLProducto
 (
     id serial primary key ,
@@ -36,6 +43,8 @@ create table TBLProducto
     id_categoria int REFERENCES TBLCategoriaProducto(id),
     fposteo TIMESTAMP DEFAULT current_timestamp
 );
+
+SELECT * FROM TBLPuntoVenta
 
 create table TBLPuntoVenta
 (

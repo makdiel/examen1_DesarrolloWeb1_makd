@@ -10,8 +10,8 @@ EncabezadoVenta.get('', getEncabezadoVenta );
 
 EncabezadoVenta.post('', postEncabezadoVenta)
 
-EncabezadoVenta.put( '/:id', putEncabezadoVenta )
+EncabezadoVenta.put( '/:documento', putEncabezadoVenta )
 
-EncabezadoVenta.delete('/:id', deleteEncabezadoVenta)
+EncabezadoVenta.delete('/:documento', deleteEncabezadoVenta)
 
 export { EncabezadoVenta }
