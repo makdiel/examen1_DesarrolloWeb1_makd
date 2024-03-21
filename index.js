@@ -40,6 +40,7 @@ app.use('/api/DetalleCompra', DetalleCompra);
 app.use('/api/EncabezadoVenta', EncabezadoVenta);
 app.use('/api/DetalleVenta', DetalleVenta);
 
+
 app.listen(port, ()=>{
 
     console.log(`Escuchando en el puerto ${port} `);

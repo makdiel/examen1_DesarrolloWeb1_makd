@@ -15,7 +15,7 @@ const postTipoProducto = async (req, res)=>{
     const params =  [nombre_Tipo];
 
     const sql = `insert into TBLTipoProducto 
-    (nombre_Tipo)
+    (nombre_tipo)
     values 
     ($1) returning *`;
 
@@ -26,13 +26,13 @@ const postTipoProducto = async (req, res)=>{
 
 const putTipoProducto = async (req, res)=>{
 
-    const { nombre_Tipo  } = req.body;
+    const { nombre_tipo  } = req.body;
     const {id} = req.params;
     
-    const params =  [nombre_Tipo, id];
+    const params =  [nombre_tipo, id];
 
     const sql = `update TBLTipoProducto
-    set nombre_Tipo = $1   
+    set nombre_tipo = $1   
     where id = $2
     returning *`;
 

@@ -16,6 +16,7 @@ create table TBLProveedores
 
 select * from TBLTipoProducto
 
+
 create table TBLTipoProducto
 (
     id serial PRIMARY key,
@@ -32,6 +33,7 @@ create table TBLCategoriaProducto
 
 select * from TBLCategoriaProducto
 
+select * from TBLProducto
 
 create table TBLProducto
 (
