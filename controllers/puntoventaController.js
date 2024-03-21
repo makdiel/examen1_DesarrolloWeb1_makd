@@ -2,7 +2,7 @@ import {db} from '../db/conn.js';
 
 const getPuntoVenta = async(req, res)=>{
 
-    const sql = `select * from TBLPuntoVenta`;
+    const sql = `select * from TBLPuntoVenta where activo = true order by id asc`;
 
     const result = await db.query(sql);
    
@@ -11,11 +11,11 @@ const getPuntoVenta = async(req, res)=>{
 }
 
 const postPuntoVenta = async (req, res)=>{
-    const { nombre_PuntoVenta , direccion, contacto} = req.body;
-    const params =  [nombre_PuntoVenta, direccion, contacto];
+    const { nombre_puntoventa , direccion, contacto} = req.body;
+    const params =  [nombre_puntoventa, direccion, contacto];
 
     const sql = `insert into TBLPuntoVenta 
-    (nombre_PuntoVenta,direccion,contacto)
+    (nombre_puntoventa,direccion,contacto)
     values 
     ($1,$2,$3) returning *`;
 
@@ -26,13 +26,13 @@ const postPuntoVenta = async (req, res)=>{
 
 const putPuntoVenta = async (req, res)=>{
 
-    const { nombre_PuntoVenta , direccion, contacto} = req.body;
+    const { nombre_puntoventa , direccion, contacto} = req.body;
     const {id} = req.params;
     
-    const params =  [nombre_PuntoVenta, direccion, contacto,id];
+    const params =  [nombre_puntoventa, direccion, contacto,id];
 
     const sql = `update TBLPuntoVenta
-    set nombre_PuntoVenta = $1, 
+    set nombre_puntoVenta = $1, 
     direccion = $2,
     contacto = $3 
     where id = $4
@@ -49,8 +49,9 @@ const deletePuntoVenta = async (req, res)=>{
     const {id} = req.params;
     const params = [ id];
 
-    const sql = `delete from TBLPuntoVenta
-    where id = $4
+    const sql = `update TBLPuntoVenta 
+    set activo = false
+    where id = $1
     returning *`;
 
     const result = await db.query(sql, params);

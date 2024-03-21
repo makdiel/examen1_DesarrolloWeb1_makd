@@ -2,7 +2,7 @@ import {db} from '../db/conn.js';
 
 const getTipoProducto = async(req, res)=>{
 
-    const sql = `select * from TBLTipoProducto`;
+    const sql = `select * from TBLTipoProducto where activo = true order by id asc`;
 
     const result = await db.query(sql);
    
@@ -11,8 +11,8 @@ const getTipoProducto = async(req, res)=>{
 }
 
 const postTipoProducto = async (req, res)=>{
-    const { nombre_Tipo } = req.body;
-    const params =  [nombre_Tipo];
+    const { nombre_tipo } = req.body;
+    const params =  [nombre_tipo];
 
     const sql = `insert into TBLTipoProducto 
     (nombre_tipo)
@@ -47,7 +47,8 @@ const deleteTipoProducto = async (req, res)=>{
     const {id} = req.params;
     const params = [ id];
 
-    const sql = `delete from TBLTipoProducto
+    const sql = `update TBLTipoProducto
+    set activo = false   
     where id = $1
     returning *`;
 
