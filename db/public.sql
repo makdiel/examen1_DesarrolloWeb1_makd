@@ -14,6 +14,12 @@ create table TBLProveedores
     fposteo TIMESTAMP DEFAULT current_timestamp 
 )
 
+alter table TBLProveedores ADD activo BOOLEAN DEFAULT TRUE
+
+update TBLProveedores set activo = true where id = 6
+
+
+
 select * from TBLTipoProducto
 
 
@@ -24,12 +30,18 @@ create table TBLTipoProducto
     fposteo TIMESTAMP DEFAULT current_timestamp 
 );
 
+alter table TBLTipoProducto ADD Activo BOOLEAN DEFAULT TRUE
+
 create table TBLCategoriaProducto
 (
     id serial PRIMARY key,
     nombre_categoria varchar(200),
     fposteo TIMESTAMP DEFAULT current_timestamp 
 );
+alter table TBLCategoriaProducto ADD activo BOOLEAN DEFAULT TRUE
+
+update TBLCategoriaProducto set activo = true where id = 5
+
 
 select * from TBLCategoriaProducto
 
@@ -46,6 +58,23 @@ create table TBLProducto
     fposteo TIMESTAMP DEFAULT current_timestamp
 );
 
+ALTER TABLE TBLProducto ADD imagen bytea  NULL
+
+ALTER TABLE TBLProducto ADD mime_type varchar(500) NULL
+
+ALTER TABLE TBLProducto ADD nombre_archivo varchar(500) NULL
+
+alter table TBLProducto ADD activo BOOLEAN DEFAULT TRUE
+
+update TBLProducto set activo = true
+
+select a.id ,a.mime_type,encode(a.imagen, 'base64') imagen , a.nombre_producto,a.precio,b.nombre_proveedor,c.nombre_Tipo ,d.nombre_categoria ,a.fposteo from TBLProducto a
+                 inner join TBLProveedores b on b.id = a.id_proveedor
+                 inner join TBLTipoProducto c on c.id = a.id_tipo
+                 inner join TBLCategoriaProducto d on d.id =a.id_categoria 
+                 where a.activo = true order by a.fposteo desc
+
+
 SELECT * FROM TBLPuntoVenta
 
 create table TBLPuntoVenta
@@ -56,6 +85,11 @@ create table TBLPuntoVenta
     contacto varchar(200),
     fposteo TIMESTAMP DEFAULT current_timestamp 
 );
+
+
+update TBLPuntoVenta set activo = 'true'
+
+alter table TBLPuntoVenta ADD activo BOOLEAN DEFAULT TRUE
 
 --DROP TABLE TBLInventario
 
@@ -111,5 +145,29 @@ create table TBLDetalleVenta
     descuento numeric(12,2) 
 );
 
+create table tbl_rol 
+(
+    id serial PRIMARY key,
+    nombre_rol varchar(200), 
+    fecha_creacion TIMESTAMP DEFAULT current_timestamp, 
+    activo BOOLEAN DEFAULT true
+);
 
+--insert into tbl_rol(nombre_rol)
+--values ('Usuario')
+
+select * from tbl_rol
+
+create table tbl_usuarios 
+(
+    nombre_usuario  varchar(20) primary key,
+    correo_electronico varchar(50),
+    contrasena varchar(20),
+    nombre varchar(200),    
+    foto_perfil bytea,
+    id_rol int,
+    fecha_creacion TIMESTAMP DEFAULT current_timestamp, 
+    activo BOOLEAN DEFAULT true, 
+    constraint fk_id_rol FOREIGN key (id_rol) REFERENCES tbl_rol (id)
+);
 

@@ -2,7 +2,7 @@ import {db} from '../db/conn.js';
 
 const getProveedor = async(req, res)=>{
 
-    const sql = `select * from TBLProveedores`;
+    const sql = `select * from TBLProveedores where activo = true order by id asc`;
 
     const result = await db.query(sql);
    
@@ -49,7 +49,8 @@ const deleteProveedor = async (req, res)=>{
     const {id} = req.params;
     const params = [ id];
 
-    const sql = `delete from TBLProveedores
+    const sql = `update TBLProveedores
+    set activo = false
     where id = $1
     returning *`;
 

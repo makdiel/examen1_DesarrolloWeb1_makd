@@ -11,6 +11,8 @@ import { EncabezadoCompra } from './routes/apiEncabezadoCompra.js';
 import { DetalleCompra } from './routes/apiDetalleCompra.js';
 import { EncabezadoVenta } from './routes/apiEncabezadoVenta.js';
 import { DetalleVenta } from './routes/apiDetalleVenta.js';
+import { usuario } from './routes/apiUser.js';
+
 import cors from 'cors';
 
 const app = express();
@@ -39,7 +41,7 @@ app.use('/api/EncabezadoCompra', EncabezadoCompra);
 app.use('/api/DetalleCompra', DetalleCompra);
 app.use('/api/EncabezadoVenta', EncabezadoVenta);
 app.use('/api/DetalleVenta', DetalleVenta);
-
+app.use('/api/usuario', usuario);
 
 app.listen(port, ()=>{
 
