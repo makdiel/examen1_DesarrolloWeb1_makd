@@ -1,6 +1,5 @@
 //const express = require('express');
 import express from 'express';
-
 import { CategoriaProducto } from './routes/apiCategoriaProductos.js';
 import { Proveedor } from './routes/apiProveedor.js';
 import { TipoProducto } from './routes/apiTipoProducto.js';
@@ -12,7 +11,6 @@ import { DetalleCompra } from './routes/apiDetalleCompra.js';
 import { EncabezadoVenta } from './routes/apiEncabezadoVenta.js';
 import { DetalleVenta } from './routes/apiDetalleVenta.js';
 import { usuario } from './routes/apiUser.js';
-
 import cors from 'cors';
 
 const app = express();

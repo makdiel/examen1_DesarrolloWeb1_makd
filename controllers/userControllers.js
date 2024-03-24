@@ -36,7 +36,7 @@ const postUsuario = async (req, res) => {
                     (foto_perfil, mime_type, nombre_archivo,nombre_usuario, 
                     correo_electronico, contrasena,nombre,id_rol)
                     values 
-                    ($1, $2, $3, $4,$5,$6,$7,$8, 2) returning nombre_usuario, 'creado con exito' mensaje `;
+                    ($1, $2, $3, $4,$5,$6,$7, 2) returning *, 'creado con exito' mensaje `;
 
         if (contrasena === confirmacion_con) {
             const result = await db.query(sql, params);

@@ -156,7 +156,7 @@ create table tbl_rol
 --insert into tbl_rol(nombre_rol)
 --values ('Usuario')
 
-select * from tbl_rol
+select * from tbl_usuarios
 
 create table tbl_usuarios 
 (
@@ -165,9 +165,15 @@ create table tbl_usuarios
     contrasena varchar(20),
     nombre varchar(200),    
     foto_perfil bytea,
+    mime_type varchar(500),
+    nombre_archivo varchar(500),
     id_rol int,
     fecha_creacion TIMESTAMP DEFAULT current_timestamp, 
     activo BOOLEAN DEFAULT true, 
     constraint fk_id_rol FOREIGN key (id_rol) REFERENCES tbl_rol (id)
 );
+
+
+insert into tbl_usuarios(nombre_usuario,correo_electronico,contrasena,nombre,id_rol,activo)
+values ('admin','mtabora@hotmail.com','admin','administrador',1,true)
 
