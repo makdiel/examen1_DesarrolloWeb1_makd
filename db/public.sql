@@ -156,7 +156,10 @@ create table tbl_rol
 --insert into tbl_rol(nombre_rol)
 --values ('Usuario')
 
-select * from tbl_usuarios
+select a.nombre , a.nombre_usuario,a.correo_electronico,a.id_rol,a.foto_perfil,a.mime_type,a.nombre_archivo , b.nombre_rol,a.fecha_creacion
+from tbl_usuarios a 
+inner join tbl_rol b on b.id = a.id_rol
+where a.activo = TRUE
 
 create table tbl_usuarios 
 (

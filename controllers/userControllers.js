@@ -30,7 +30,7 @@ const postUsuario = async (req, res) => {
             } = req.file;
 
         const params = [buffer, mimetype, originalname,nombre_usuario,
-            correo_electronico,contrasena,nombre, 2];
+            correo_electronico,contrasena,confirmacion_con,nombre, 2];
 
         const sql = ` insert into tbl_usuarios 
                     (foto_perfil, mime_type, nombre_archivo,nombre_usuario, 
@@ -50,8 +50,10 @@ const postUsuario = async (req, res) => {
 }
 
 const getListaUsuarios = async(req, res)=>{
-    const sql = `select * from tbl_usuarios
-                 where activo = true order by fecha_creacion desc`;
+    const sql = `select a.nombre , a.nombre_usuario,a.correo_electronico,a.id_rol,encode(a.foto_perfil, 'base64') foto_perfil,a.mime_type,a.nombre_archivo , b.nombre_rol
+                 from tbl_usuarios a 
+                 inner join tbl_rol b on b.id = a.id_rol
+                 where a.activo = true order by a.fecha_creacion desc`;
 
     const result = await db.query(sql);
     res.json(result);
