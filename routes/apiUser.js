@@ -8,7 +8,7 @@ import { postUsuario, getUsuario,
          actualizarContrasena,getListaUsuarios, getAuth } from "../controllers/userControllers.js"
 
 usuario.use(Express.json());
-usuario.post('',upload.single('imagen'), postUsuario);
+usuario.post('',upload.single('foto_perfil'), postUsuario);
 usuario.get('/:nombre_usuario', getUsuario);
 usuario.get('', getListaUsuarios);
 usuario.get('/auth/:nombre_usuario/:pass', getAuth);
